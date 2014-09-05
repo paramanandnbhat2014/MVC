@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CustomersModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CustomersModelStoreContainer">
+    <EntitySet Name="Customers" EntityType="CustomersModel.Store.Customers" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="CustomersModel.Store.Orders" store:Type="Tables" />
+    <AssociationSet Name="CusOrderFK" Association="CustomersModel.Store.CusOrderFK">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CusID" />
+    </Key>
+    <Property Name="CusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="street" Type="nvarchar" MaxLength="100" />
+    <Property Name="subsurb" Type="nvarchar" MaxLength="100" />
+    <Property Name="state" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="100" />
+    <Property Name="email" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="roomNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="price" Type="money" />
+    <Property Name="comment" Type="nvarchar" MaxLength="100" />
+    <Property Name="CusID" Type="int" />
+  </EntityType>
+  <Association Name="CusOrderFK">
+    <End Role="Customers" Type="CustomersModel.Store.Customers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="CustomersModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OrdersModelStoreContainer" CdmEntityContainer="OrdersEntities">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="OrdersModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="subsurb" ColumnName="subsurb" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="OrdersModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="roomNo" ColumnName="roomNo" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

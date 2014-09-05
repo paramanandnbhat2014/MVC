@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CustomersModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CustomersEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="CustomersModel.Customer" />
+    <EntitySet Name="Orders" EntityType="CustomersModel.Order" />
+    <AssociationSet Name="CusOrderFK" Association="CustomersModel.CusOrderFK">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CusID" />
+    </Key>
+    <Property Name="CusID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="lastName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="street" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="subsurb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="state" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="phone" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Orders" Relationship="CustomersModel.CusOrderFK" FromRole="Customers" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="roomNo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="comment" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="CusID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="CustomersModel.CusOrderFK" FromRole="Orders" ToRole="Customers" />
+  </EntityType>
+  <Association Name="CusOrderFK">
+    <End Role="Customers" Type="CustomersModel.Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="CustomersModel.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
