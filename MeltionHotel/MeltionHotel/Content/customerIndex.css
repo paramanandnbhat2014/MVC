@@ -1,0 +1,36 @@
+﻿#table {
+    width: 90%;
+    margin:auto;
+    border:1px solid #3B5998;
+}
+
+    #table th {
+      background:#3B5998;
+      height:30px;
+    }
+    #table td {
+
+        padding: 6px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+.evenRow {
+   background:#808080;
+   color:#fff;
+}
+
+.evenA {
+    color:#fff;
+}
+
+.oddA {
+   color:#3B5998;
+}
+
+.dataHover {
+ background:#3B5998;
+ color:#fff;
+}
+
+
